@@ -1,0 +1,1 @@
+export { gifParser } from './gif';
