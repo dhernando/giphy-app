@@ -2,7 +2,7 @@ const env = process.env.NODE_ENV;
 
 const dev = {
     "server": {
-        "port": 3000
+        "port": 5000
     },
     "giphy": {
         "key": "7zJ0dnWtfqSLH4Qj0Oz1jPwoUyjehlxz"
@@ -20,7 +20,7 @@ const dev = {
 };
 const production = {
     "server": {
-        "port": 3000
+        "port": 5000
     },
     "giphy": {
         "key": "7zJ0dnWtfqSLH4Qj0Oz1jPwoUyjehlxz"
