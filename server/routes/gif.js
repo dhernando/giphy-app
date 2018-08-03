@@ -2,7 +2,14 @@
 import gifcontroller from '../controllers/gif.ctrl';
 
 export default (router, dbs) => {
-    const { list, create } = gifcontroller(dbs);
+    const { trending, list, create } = gifcontroller(dbs);
+
+    /**
+     * get trending gifs
+     */
+
+    router.route('/trending')
+        .get(trending)
 
     /**
      * get all gifs

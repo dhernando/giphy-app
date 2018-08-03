@@ -21,6 +21,17 @@ const req = function (endpoint, method, data) {
 };
 
 export default {
+
+    trending: function (offset = '', rating = '') {
+        return new Promise(async function (resolve, reject) {
+            try {
+                const data = req('gifs/trending?offset=' + offset + '&rating=' + rating);
+                return resolve(data);
+            } catch (e) {
+                return reject(e);
+            }
+        });
+    },
     search: function (q, offset = '', rating = '') {
         return new Promise(async function (resolve, reject) {
             try {

@@ -5,17 +5,36 @@ import { gifParser } from '../utils/parsers';
 
 export default (dbs) => {
     return {
-        list: async (req, res) => {
-            console.log('dbs:', dbs);
-            try {
-                const data = await Gif.find();
 
+        trending: async(req, res) => {
+            try {
                 let parsed;
-                if (data.length < 25) { // Not enough gifs in db
-                    const gifs = await Giphy.search('cheeseburger'); //TO-DO, dynamic query
-                    const jsonGifs = JSON.parse(gifs).data;
-                    parsed = gifParser(jsonGifs);
-                }
+
+                const gifs = await Giphy.trending(req.query.offset);
+                const jsonGifs = JSON.parse(gifs).data;
+                parsed = gifParser(jsonGifs);
+
+                return res.status(200).json({
+                    success: true,
+                    data: parsed
+                });
+            } catch (e) {
+                console.log(e);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Internal Server Error'
+                });
+            }
+        },
+
+        list: async (req, res) => {
+            try {
+                let parsed;
+                
+                const gifs = await Giphy.search(req.query.q, req.query.offset); //TO-DO, dynamic query
+                const jsonGifs = JSON.parse(gifs).data;
+                parsed = gifParser(jsonGifs);
+
                 return res.status(200).json({
                     success: true,
                     data: parsed

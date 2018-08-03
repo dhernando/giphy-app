@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
+import Search from './Search';
+
 class Header extends Component {
+
+    constructor(props)
+    {
+        super(props)
+    }
+
     render() {
         return ( 
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -8,10 +16,7 @@ class Header extends Component {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <form className="form-inline mt-2 mt-md-0">
-                        <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <Search handleInputChange={this.props.handleInputChange} handleSubmit={this.props.handleSubmit} q={this.props.q} />
                 </div>
             </nav>
         );
